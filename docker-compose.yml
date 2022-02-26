@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  spark:
+  spark-master:
     image: docker.io/bitnami/spark:3
     environment:
       - SPARK_MODE=master
@@ -13,6 +13,8 @@ services:
       - '8080:8080'
     volumes:
       - ".:/TRAVIST_Spark:rw" # Name volumn for container to access the local root of this project
+    networks:
+      - spark
   spark-worker:
     image: docker.io/bitnami/spark:3
     environment:
@@ -24,3 +26,9 @@ services:
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
+    depends_on:
+      - spark-master
+
+networks:
+  spark:
+    driver: bridge

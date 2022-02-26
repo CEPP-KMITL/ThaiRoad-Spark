@@ -1,7 +1,7 @@
 
 # TRAVIST-Spark
 
-A big data service for TRAVIST made up of Apache Spark on bitnami docker
+A big data service for TRAVIST made up of Apache Spark on bitnami Docker
 
 
 ## Roadmap
