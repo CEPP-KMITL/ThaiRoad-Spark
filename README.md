@@ -30,6 +30,16 @@ Access Spark's shell with Spark installation
 | :-------- | :------- | :------------------------- |
 | `spark_master_url` | `string` | **Required**. Your spark master url for spark admin Example: spark://5bbbc7e372fa:7077 |
 
+Access Spark's shell from inside container
+
+```bash
+  docker exec -it $spark_conatiner_id /bin/bash
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `spark_conatiner_id` | `string` | **Required**. Your spark master container id Example: 5bbbc7e372fa |
+
 
 ## API Reference
 
