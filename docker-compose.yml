@@ -11,6 +11,8 @@ services:
       - SPARK_SSL_ENABLED=no
     ports:
       - '8080:8080'
+    volumes:
+      - ".:/TRAVIST_Spark:rw" # Name volumn for container to access the local root of this project
   spark-worker:
     image: docker.io/bitnami/spark:3
     environment:
