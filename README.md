@@ -19,6 +19,12 @@ Start the service (in detached mode)
   docker-compose up -d
 ```
 
+#### Spark Admin
+
+```http
+  http://localhost:8080/
+```
+
 Access Spark's shell with Spark installation
 
 ```bash
@@ -28,7 +34,7 @@ Access Spark's shell with Spark installation
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `spark_master_url` | `string` | **Required**. Your spark master url for spark admin Example: spark://5bbbc7e372fa:7077 |
+| `spark_master_url` | `string` | **Required**. Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
 
 Access Spark's shell from inside container
 
@@ -38,25 +44,15 @@ Access Spark's shell from inside container
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `spark_conatiner_id` | `string` | **Required**. Your spark master container id Example: 5bbbc7e372fa |
+| `spark_conatiner_id` | `string` | **Required**. Your spark master container id. Example: 5bbbc7e372fa |
 
 
-## API Reference
+## Docker Compose Reference
 
 | Service Name | Port     | Description                |
 | :-------- | :------- | :------------------------- |
 | `spark` | `8080` | **Required**. Spark container with Spark Admin |
 | `spark-worker` | `-` | **Required**. Spark worker 1 |
-
-#### Spark Admin
-
-```http
-  http://localhost:8080/
-```
-
-
-
-
 ## Acknowledgements
 
  - [Apache Spark packaged by Bitnami](https://hub.docker.com/r/bitnami/spark/)
