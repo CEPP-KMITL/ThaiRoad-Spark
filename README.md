@@ -39,12 +39,12 @@ Access Spark's shell with Spark installation
 Access Spark's shell from inside container
 
 ```bash
-  docker exec -it $spark_conatiner_id /bin/bash
+  docker exec -it $spark_conatiner_id_or_name /bin/bash
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `spark_conatiner_id` | `string` | **Required**. Your spark master container id. Example: 5bbbc7e372fa |
+| `spark_conatiner_id_or_name` | `string` | **Required**. Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master |
 
 
 ## Docker Compose Reference
@@ -56,6 +56,5 @@ Access Spark's shell from inside container
 ## Acknowledgements
 
  - [Apache Spark packaged by Bitnami](https://hub.docker.com/r/bitnami/spark/)
- - [Apache SPARK Up and Running FAST with Docker](https://www.youtube.com/watch?v=Zr_FqYKC6Qc&t=203s)
- - [DIY: Apache Spark & Docker](https://towardsdatascience.com/diy-apache-spark-docker-bb4f11c10d24)
+ - [Apache Spark packaged by Bitnami Github](https://github.com/bitnami/bitnami-docker-spark)
 

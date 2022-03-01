@@ -1,0 +1,20 @@
+{
+  "name": "travist-spark",
+  "version": "1.0.0",
+  "description": "A big data service for TRAVIST",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen:mock": "node gen-mock-file.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CEPP-KMITL/TRAVIST-Spark.git"
+  },
+  "author": "Pakorn Thanaprachanon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CEPP-KMITL/TRAVIST-Spark/issues"
+  },
+  "homepage": "https://github.com/CEPP-KMITL/TRAVIST-Spark#readme"
+}
