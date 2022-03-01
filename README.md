@@ -80,4 +80,5 @@ Submit an application to the cluster for processing
 
  - [Apache Spark packaged by Bitnami](https://hub.docker.com/r/bitnami/spark/)
  - [Apache Spark packaged by Bitnami Github](https://github.com/bitnami/bitnami-docker-spark)
- - [Apache SPARK Up and Running FAST with Docker](https://www.youtube.com/watch?v=Zr_FqYKC6Qc)
+ - [Apache SPARK Up and Running FAST with Docker](youtube.com/watch?v=Zr_FqYKC6Qc)
+ - [Apache Spark local with Docker](https://medium.com/@sarunyouwhangbunyapirat/apache-spark-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3-%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%97%E0%B8%94%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%99-local-with-docker-f40c281bae8e)
