@@ -57,5 +57,5 @@ Access Spark's shell from inside container
 
  - [Apache Spark packaged by Bitnami](https://hub.docker.com/r/bitnami/spark/)
  - [Apache SPARK Up and Running FAST with Docker](https://www.youtube.com/watch?v=Zr_FqYKC6Qc&t=203s)
-
+ - [DIY: Apache Spark & Docker](https://towardsdatascience.com/diy-apache-spark-docker-bb4f11c10d24)
 
