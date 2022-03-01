@@ -8,10 +8,10 @@ lazy val root = (project in file("."))
   )
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" %% "spark-core" % "3.1.2",
-  "org.apache.spark" %% "spark-sql" % "3.1.2",
-  "org.apache.spark" %% "spark-mllib" % "3.1.2",
-  "org.apache.spark" %% "spark-streaming" % "3.1.2",
+  "org.apache.spark" %% "spark-core" % "3.2.1",
+  "org.apache.spark" %% "spark-sql" % "3.2.1",
+  "org.apache.spark" %% "spark-mllib" % "3.2.1",
+  "org.apache.spark" %% "spark-streaming" % "3.2.1",
   "org.twitter4j" % "twitter4j-core" % "4.0.7",
   "org.twitter4j" % "twitter4j-stream" % "4.0.7"
 )

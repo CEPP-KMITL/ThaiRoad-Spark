@@ -1,7 +1,5 @@
-package com.travist.spark
-
-import org.apache.spark._
-import org.apache.log4j._
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.SparkContext
 
 object test {
   def main(args: Array[String]): Unit = {
