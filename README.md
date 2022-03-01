@@ -51,8 +51,8 @@ Access Spark's shell from inside container
 
 | Service Name | Port     | Description                |
 | :-------- | :------- | :------------------------- |
-| `spark` | `8080` | **Required**. Spark container with Spark Admin |
-| `spark-worker` | `-` | **Required**. Spark worker 1 |
+| `spark-master` | `8080,7070` | **Required**. Spark container with Spark Admin |
+| `spark-worker` | `8081` | **Required**. Spark worker number 1 |
 ## Acknowledgements
 
  - [Apache Spark packaged by Bitnami](https://hub.docker.com/r/bitnami/spark/)
