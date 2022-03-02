@@ -50,7 +50,7 @@ Access Spark's shell from inside container
 | :-------- | :------- | :------------------------- |
 | `spark_conatiner_id_or_name` | `string` | **Required**. Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master. |
 
-Submit an application to the cluster for processing
+Submit an application to the cluster for processing (Need to perform inside spark master container)
 
 ```bash
   spark-submit $path_to_file
@@ -82,3 +82,6 @@ Submit an application to the cluster for processing
  - [Apache Spark packaged by Bitnami Github](https://github.com/bitnami/bitnami-docker-spark)
  - [Apache SPARK Up and Running FAST with Docker](youtube.com/watch?v=Zr_FqYKC6Qc)
  - [Apache Spark local with Docker](https://medium.com/@sarunyouwhangbunyapirat/apache-spark-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3-%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%97%E0%B8%94%E0%B8%A5%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%99-local-with-docker-f40c281bae8e)
+  - [Apache SPARK Quick Start](https://spark.apache.org/docs/latest/quick-start.html)
+  - [Spark Submit Command Explained with Examples](https://sparkbyexamples.com/spark/spark-submit-command/)
+  - [Running Apache Spark Applications](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.0/running-spark-applications/content/running_sample_spark_2_x_applications.html)
