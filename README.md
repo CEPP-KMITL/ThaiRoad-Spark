@@ -87,3 +87,4 @@ Submit an application to the cluster for processing (Need to perform inside spar
 - [Running Scala Spark jobs on Bitnami Docker images](https://www.youtube.com/watch?v=RQFyLfNBrCc)
 - [Spark Client Mode vs Cluster Mode Differences](https://www.youtube.com/watch?v=uvup4DIzVZ8&t=30s)
 - [Spark Client Mode Vs Cluster Mode](https://www.youtube.com/watch?v=RCyPU7fbxko)
+- [Group: Apache Spark](https://mvnrepository.com/artifact/org.apache.spark)

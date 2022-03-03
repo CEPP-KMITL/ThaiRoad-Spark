@@ -26,6 +26,7 @@ project/plugins/project/
 .project
 .classpath
 .cache
+.bsp
 
 # Scala-IDE specific
 .scala_dependencies
@@ -37,7 +38,6 @@ project/plugins/project/
 *.iws
 .idea
 out
-.bsp
 
 # vs code
 .vscode
