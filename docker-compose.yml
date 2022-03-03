@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   spark: # Spark Master
@@ -14,12 +14,12 @@ services:
       - '8080:8080'
       - '7077:7077'
     volumes:
-    - type: bind
-      source: ./conf/log4j.properties
-      target: /opt/bitnami/spark/conf/log4j.properties
-    - ".:/TRAVIST_Spark:rw" # Name volumn for container to access the local root of this project
+      - type: bind
+        source: ./conf/log4j.properties
+        target: /opt/bitnami/spark/conf/log4j.properties
+      - ".:/TRAVIST_Spark:rw" # Name volume for container to access the local root of this project
     networks:
-    - spark
+      - spark
   spark-worker: # Spark Worker
     container_name: spark-worker
     image: docker.io/bitnami/spark:3.2.1
@@ -40,27 +40,6 @@ services:
       - spark
     depends_on:
       - spark
-
-  # spark-livy:
-  #   build: ./
-  #   command: ["sh", "-c", "/opt/bitnami/livy/bin/livy-server"]
-  #   volumes:
-  #     - type: bind
-  #       source: ./conf/
-  #       target: /opt/bitnami/livy/conf/
-  #     - type: bind
-  #       source: ./target/
-  #       target: /target/
-  #     - type: bind
-  #       source: ./data/
-  #       target: /data/
-  #   ports:
-  #     - '8998:8998'
-  #   networks:
-  #     - spark
-  #   depends_on:
-  #     - spark
-  #     - spark-worker
 
 networks:
   spark:
