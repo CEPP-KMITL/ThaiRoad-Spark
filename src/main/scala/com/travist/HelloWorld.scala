@@ -1,20 +1,15 @@
 package com.travist
 
-import org.apache.log4j._
-import org.apache.spark._
+import org.apache.spark.sql._
 
 object HelloWorld {
   def main(args: Array[String]): Unit = {
 
-    Logger.getLogger("org").setLevel(Level.ERROR)
+    val spark = SparkSession.builder.master("spark://localhost:7077").appName("SparkByExample").getOrCreate
 
-    val sc = new SparkContext("local[*]", "HelloWorld")
-
-    val lines = sc.textFile("data/ml-100k/u.data")
-    val numLines = lines.count()
-
-    println("Hello world! The u.data file has " + numLines + " lines.")
-
-    sc.stop()
+    println("First SparkContext:")
+    println("APP Name :" + spark.sparkContext.appName)
+    println("Deploy Mode :" + spark.sparkContext.deployMode)
+    println("Master :" + spark.sparkContext.master)
   }
 }

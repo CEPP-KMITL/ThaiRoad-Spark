@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  spark: # Spark Master
+  spark-master: # Spark Master
     container_name: spark-master
     image: docker.io/bitnami/spark:3.2.1
     environment:
@@ -14,9 +14,9 @@ services:
       - '8080:8080'
       - '7077:7077'
     volumes:
-      - type: bind
-        source: ./conf/log4j.properties
-        target: /opt/bitnami/spark/conf/log4j.properties
+      - type: bind # For disable log only
+        source: ./conf/log4j.properties # For disable log only
+        target: /opt/bitnami/spark/conf/log4j.properties # For disable log only
       - ".:/TRAVIST_Spark:rw" # Name volume for container to access the local root of this project
     networks:
       - spark
@@ -25,7 +25,7 @@ services:
     image: docker.io/bitnami/spark:3.2.1
     environment:
       - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_MASTER_URL=spark://spark-master:7077
       - SPARK_WORKER_MEMORY=1G
       - SPARK_WORKER_CORES=1
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -33,9 +33,9 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - type: bind
-        source: ./conf/log4j.properties
-        target: /opt/bitnami/spark/conf/log4j.properties
+      - type: bind # For disable log only
+        source: ./conf/log4j.properties # For disable log only
+        target: /opt/bitnami/spark/conf/log4j.properties # For disable log only
     networks:
       - spark
     depends_on:
