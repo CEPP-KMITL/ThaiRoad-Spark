@@ -76,6 +76,7 @@ Submit an application to the cluster for processing (Need to perform inside spar
 
 ## Acknowledgements
 
+- [Spark Application | Setup IntelliJ IDE with SBT](https://www.youtube.com/watch?v=ACp2ioiTwQk&t=442s)
 - [Apache Spark packaged by Bitnami](https://hub.docker.com/r/bitnami/spark/)
 - [Apache Spark packaged by Bitnami Github](https://github.com/bitnami/bitnami-docker-spark)
 - [Apache SPARK Up and Running FAST with Docker](https://www.youtube.com/watch?v=Zr_FqYKC6Qc)
