@@ -32,6 +32,12 @@ project/plugins/project/
 .worksheet
 
 # IntelliJ IDEA specific
-**/.idea/
-**/target/
-**/*.iml
+*.iml
+*.ipr
+*.iws
+.idea
+out
+.bsp
+
+# vs code
+.vscode
