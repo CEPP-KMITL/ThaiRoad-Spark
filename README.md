@@ -35,7 +35,8 @@ Access Spark's shell with Spark installation
 
 | Parameter          | Type     | Description                                                                             |
 | :----------------- | :------- | :-------------------------------------------------------------------------------------- |
-| `spark_master_url` | `string` | **Required**. Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
+| `spark_master_url` | `string` | **
+Required**. Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
 
 Access Spark's shell from inside container
 
@@ -45,7 +46,8 @@ Access Spark's shell from inside container
 
 | Parameter                    | Type     | Description                                                                                            |
 | :--------------------------- | :------- | :----------------------------------------------------------------------------------------------------- |
-| `spark_conatiner_id_or_name` | `string` | **Required**. Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master. |
+| `spark_conatiner_id_or_name` | `string` | **
+Required**. Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master. |
 
 Submit an application to the cluster for processing (Need to perform inside spark master container)
 
@@ -61,11 +63,10 @@ Submit an application to the cluster for processing (Need to perform inside spar
 
 ### Container Specification
 
-| Container Name | Port   | Description                                                                       |
-| :------------- | :----- | :-------------------------------------------------------------------------------- |
-| `spark-master` | `8080` | **Required**. Spark master container with Spark admin.                            |
-| `spark-worker` | `-`    | **Required**. Spark worker number 1.                                              |
-| `spark-livy`   | `8998` | Service that enables easy interaction with a Spark cluster over a REST interface. |
+| Container Name | Port        | Description                                            |
+| :------------- |:------------|:-------------------------------------------------------|
+| `spark-master` | `8080,7077` | **Required**. Spark Master Container with Spark Admin. |
+| `spark-worker` | `-`         | **Required**. Spark Worker.                            |
 
 ### Worker Specification
 
