@@ -13,7 +13,7 @@ object WordCountBetterSorted {
     Logger.getLogger("org").setLevel(Level.ERROR)
 
     // Create a SparkContext using the local machine
-    val sc = new SparkContext("local", "WordCountBetterSorted")
+    val sc = new SparkContext("local[*]", "WordCountBetterSorted")
 
     // Load each line of my book into an RDD
     val input = sc.textFile("data/book.txt")
