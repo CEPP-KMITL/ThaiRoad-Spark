@@ -5,11 +5,11 @@ services:
     container_name: spark-master
     image: docker.io/bitnami/spark:3.2.1
     environment:
-      - SPARK_MODE=master
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+      - SPARK_MODE=${SPARK_MODE}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=${SPARK_RPC_AUTHENTICATION_ENABLED} # Enable RPC authentication. Default: no
+      - SPARK_RPC_ENCRYPTION_ENABLED=${SPARK_RPC_ENCRYPTION_ENABLED} # Enable RPC encryption. Default: no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=${SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED} # Enable local storage encryption: Default no
+      - SPARK_SSL_ENABLED=${SPARK_SSL_ENABLED} # Enable SSL configuration. Default: no
     ports:
       - '8080:8080'
       - '7077:7077'
@@ -19,28 +19,28 @@ services:
         target: /opt/bitnami/spark/conf/log4j.properties # For disable log only
       - ".:/TRAVIST_Spark:rw" # Name volume for container to access the local root of this project
     networks:
-      - spark
+      - spark_nw
   spark-worker: # Spark Worker
     container_name: spark-worker
     image: docker.io/bitnami/spark:3.2.1
     environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_WORKER_CORES=1
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+      - SPARK_MODE=worker # Cluster mode starting Apache Spark. Valid values: master, worker. Default: master
+      - SPARK_MASTER_URL=${SPARK_MASTER_URL} # Url where the worker can find the master. Only needed when spark mode is worker. Default: spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=${SPARK_WORKER_MEMORY}
+      - SPARK_WORKER_CORES=${SPARK_WORKER_CORES}
+      - SPARK_RPC_AUTHENTICATION_ENABLED=${SPARK_RPC_AUTHENTICATION_ENABLED} # Enable RPC authentication. Default: no
+      - SPARK_RPC_ENCRYPTION_ENABLED=${SPARK_RPC_ENCRYPTION_ENABLED} # Enable RPC encryption. Default: no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=${SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED} # Enable local storage encryption: Default no
+      - SPARK_SSL_ENABLED=${SPARK_SSL_ENABLED} # Enable SSL configuration. Default: no
     volumes:
       - type: bind # For disable log only
         source: ./conf/log4j.properties # For disable log only
         target: /opt/bitnami/spark/conf/log4j.properties # For disable log only
     networks:
-      - spark
+      - spark_nw
     depends_on:
-      - spark
+      - spark-master
 
 networks:
-  spark:
+  spark_nw:
     driver: bridge
