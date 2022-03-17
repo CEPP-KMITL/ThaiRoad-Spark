@@ -17,7 +17,7 @@ Start the service (in detached mode)
 ```
 
 | Parameter               | Type  | Description                                                |
-|:------------------------|:------|:-----------------------------------------------------------|
+| :---------------------- | :---- | :--------------------------------------------------------- |
 | `number_of_worker_node` | `int` | **Required** Number of worker that will be in the cluster. |
 
 Spark Admin
@@ -33,10 +33,10 @@ Access Spark's shell with Spark installation
   ./spark-shell $spark_master_url
 ```
 
-| Parameter          | Type     | Description                                                                            |
-|:-------------------|:---------|:---------------------------------------------------------------------------------------|
-| `spark_master_url` | `string` | **
-Required** Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
+| Parameter                                                                              | Type     | Description |
+| :------------------------------------------------------------------------------------- | :------- | :---------- |
+| `spark_master_url`                                                                     | `string` | \*\*        |
+| Required\*\* Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
 
 Access Spark's shell from inside container
 
@@ -44,10 +44,10 @@ Access Spark's shell from inside container
   docker exec -it $spark_conatiner_id_or_name bash
 ```
 
-| Parameter                    | Type     | Description                                                                                           |
-|:-----------------------------|:---------|:------------------------------------------------------------------------------------------------------|
-| `spark_conatiner_id_or_name` | `string` | **
-Required** Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master. |
+| Parameter                                                                                             | Type     | Description |
+| :---------------------------------------------------------------------------------------------------- | :------- | :---------- |
+| `spark_conatiner_id_or_name`                                                                          | `string` | \*\*        |
+| Required\*\* Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master. |
 
 Submit an application to the cluster for processing (Need to perform inside spark master container)
 
@@ -56,7 +56,7 @@ Submit an application to the cluster for processing (Need to perform inside spar
 ```
 
 | Parameter      | Type     | Description                                                  |
-|:---------------|:---------|:-------------------------------------------------------------|
+| :------------- | :------- | :----------------------------------------------------------- |
 | `path_to_file` | `string` | **Required** Absolute path to file which you want to submit. |
 
 ## Docker Compose Reference
@@ -64,16 +64,16 @@ Submit an application to the cluster for processing (Need to perform inside spar
 ### Container Specification
 
 | Container Name | Port        | Description                                           |
-|:---------------|:------------|:------------------------------------------------------|
+| :------------- | :---------- | :---------------------------------------------------- |
 | `spark-master` | `8080,7077` | **Required** Spark Master Container with Spark Admin. |
 | `spark-worker` | `-`         | **Required** Spark Worker.                            |
 
-![](./doc_resources/TRAVIST_Spark_Architecture.jpeg)
+![](./readme_resources/TRAVIST_Spark_Architecture.jpeg)
 
 ### Worker Specification
 
 | Specification Parameter | Value |
-|:------------------------|:------|
+| :---------------------- | :---- |
 | `SPARK_WORKER_MEMORY`   | `1G`  |
 | `SPARK_WORKER_CORES`    | `1`   |
 
