@@ -3,7 +3,7 @@ version: '3'
 services:
   spark-master: # Spark Master
     container_name: spark-master
-    image: docker.io/bitnami/spark:3.2.1
+    image: docker.io/bitnami/spark:latest
     environment:
       - SPARK_MODE=${SPARK_MODE}
       - SPARK_RPC_AUTHENTICATION_ENABLED=${SPARK_RPC_AUTHENTICATION_ENABLED} # Enable RPC authentication. Default: no
@@ -22,7 +22,7 @@ services:
       - spark_nw
   spark-worker: # Spark Worker
     container_name: spark-worker
-    image: docker.io/bitnami/spark:3.2.1
+    image: docker.io/bitnami/spark:latest
     environment:
       - SPARK_MODE=worker # Cluster mode starting Apache Spark. Valid values: master, worker. Default: master
       - SPARK_MASTER_URL=${SPARK_MASTER_URL} # Url where the worker can find the master. Only needed when spark mode is worker. Default: spark://spark-master:7077
