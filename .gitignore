@@ -7,9 +7,6 @@ spark-3.2.1-bin-hadoop3.2
 *.log
 *.zip
 *.gz
-*.jpeg
-*.jpg
-*.png
 *~
 
 # sbt specific
