@@ -17,7 +17,7 @@ services:
       - type: bind # For disable log only
         source: ./conf/log4j.properties # For disable log only
         target: /opt/bitnami/spark/conf/log4j.properties # For disable log only
-      - ".:/TRAVIST_Spark:rw" # Name volume for container to access the local root of this project
+      - ".:/opt/bitnami/spark/source_code:rw" # Name volume for container to access the local root of this project
     networks:
       - spark_nw
   spark-worker: # Spark Worker
