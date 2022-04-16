@@ -1,10 +1,11 @@
-import java.net.InetSocketAddress
-import java.sql.Timestamp
+package com.travist.utils
 
 import com.sun.net.httpserver.{HttpExchange, HttpHandler, HttpServer}
 import org.apache.spark.sql.execution.streaming.MemoryStream
 import org.apache.spark.sql.{DataFrame, Encoder, Encoders, SQLContext}
 
+import java.net.InetSocketAddress
+import java.sql.Timestamp
 import scala.io.Source
 
 /**
