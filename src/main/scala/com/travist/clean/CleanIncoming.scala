@@ -14,7 +14,7 @@ object CleanIncoming {
     // Create Spark Session
     val spark = SparkSession
       .builder
-      .master("spark://localhost:7077")
+      .master("local[*]")
       .appName(getClass.getSimpleName)
       .getOrCreate
 
