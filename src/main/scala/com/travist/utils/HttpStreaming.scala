@@ -10,7 +10,8 @@ import scala.io.Source
 
 /**
  * Streaming data read from local server will have this schema
- * @param value - The payload POSTed to http endpoint.
+ *
+ * @param value     - The payload POSTed to http endpoint.
  * @param timestamp - Timestamp of when it was put on a stream.
  */
 case class HttpData(value: String, timestamp: Timestamp)
@@ -21,7 +22,7 @@ case class HttpData(value: String, timestamp: Timestamp)
  * It puts data on `MemoryStream` which is read by spark pipeline.
  * For local use only.
  *
- * @param port - Http port to host.
+ * @param port    - Http port to host.
  * @param baseUrl - An endpoint base path.
  */
 class HttpStream(port: Int = 8866, baseUrl: String = "/") {
@@ -48,6 +49,7 @@ class HttpStream(port: Int = 8866, baseUrl: String = "/") {
       new HttpHandler {
         override def handle(httpExchange: HttpExchange): Unit = {
           val payload = Source.fromInputStream(httpExchange.getRequestBody).mkString
+          // println(payload)
           val timestamp = new java.sql.Timestamp(System.currentTimeMillis())
           val offset = stream.addData(HttpData(payload, timestamp))
           val response = s"""{ "success": true, "timestamp": "$timestamp", "offset": $offset }"""
@@ -64,6 +66,7 @@ class HttpStream(port: Int = 8866, baseUrl: String = "/") {
 
   /**
    * Send back a response with provided status code and response text
+   *
    * @param he
    * @param status
    * @param response
@@ -75,5 +78,4 @@ class HttpStream(port: Int = 8866, baseUrl: String = "/") {
     os.write(response.getBytes)
     os.close()
   }
-
 }

@@ -18,7 +18,7 @@ object PopularMoviesDataset {
     val spark = SparkSession
       .builder
       .appName("PopularMovies")
-      .master("local[*]")
+      .master("spark://localhost:7077")
       .getOrCreate()
 
     // Create schema when reading u.data
