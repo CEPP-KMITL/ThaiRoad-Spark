@@ -2,6 +2,7 @@ package com.travist.clean
 
 import com.travist.utils.HttpStream
 import org.apache.log4j.{Level, Logger}
+import org.apache.spark.sql.functions.{col, from_json}
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.{SQLContext, SparkSession}
 
@@ -18,20 +19,26 @@ object CleanIncoming {
       .appName(getClass.getSimpleName)
       .getOrCreate
 
+    import spark.implicits._
+
     // Port and streaming trigger interval
     val PORT = 9999
     val INTERVAL = "5 seconds"
 
     // Create HTTP Server and start streaming
     implicit val sqlContext: SQLContext = spark.sqlContext
-    val query = new HttpStream(PORT).toDF
-      .writeStream
-      .trigger(Trigger.ProcessingTime(INTERVAL))
-      .foreachBatch((batch, batchId) => {
-        println(s"Processing batch: $batchId")
-        batch.show(false)
-      })
-      .start()
+    val schema = spark.read.option("multiLine", value = true).json("./data/schema/thairsc.json").as[Incident].schema
+    val queryDF = new HttpStream(PORT).toDF(sqlContext).withColumn("i", from_json(col("value"), schema))
+      .withColumn("title", col("i.title"))
+      .withColumn("datetime", col("i.datetime"))
+      .withColumn("detail", col("i.detail"))
+
+    println(schema)
+
+    val query = queryDF.writeStream.outputMode("append")
+      .format("console")
+      .option("truncate", value = false)
+      .trigger(Trigger.ProcessingTime(INTERVAL)).start()
 
     // Wait for it...
     query.awaitTermination()
