@@ -3,8 +3,7 @@ package com.travist.clean
 import com.travist.utils.HttpStream
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.functions.{col, from_json}
-import org.apache.spark.sql.streaming.Trigger
-import org.apache.spark.sql.{SQLContext, SparkSession}
+import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
 
 object CleanIncoming {
 
@@ -25,23 +24,31 @@ object CleanIncoming {
     val PORT = 9999
     val INTERVAL = "5 seconds"
 
+    val schema = spark.read.option("multiLine", value = true).json("./data/schema/thairsc.json").as[Incident].schema
+
+    def process(batch: DataFrame, batchId: Long): Unit = {
+      println(s"Processing batch: $batchId")
+      val df_with_extract_value = batch.withColumn("i", from_json(col("value"), schema))
+        .withColumn("title", col("i.title"))
+        .withColumn("datetime", col("i.datetime"))
+        .withColumn("detail", col("i.detail"))
+      val df_that_drop_original_columns = df_with_extract_value.drop("value").drop("i")
+      df_that_drop_original_columns.show()
+    }
+
     // Create HTTP Server and start streaming
     implicit val sqlContext: SQLContext = spark.sqlContext
-    val schema = spark.read.option("multiLine", value = true).json("./data/schema/thairsc.json").as[Incident].schema
-    val queryDF = new HttpStream(PORT).toDF(sqlContext).withColumn("i", from_json(col("value"), schema))
-      .withColumn("title", col("i.title"))
-      .withColumn("datetime", col("i.datetime"))
-      .withColumn("detail", col("i.detail"))
-
-    println(schema)
-
-    val query = queryDF.writeStream.outputMode("append")
-      .format("console")
-      .option("truncate", value = false)
-      .trigger(Trigger.ProcessingTime(INTERVAL)).start()
+    val query = new HttpStream(port = 9999)
+      .toDF
+      .writeStream
+      .foreachBatch(process _)
+      .start()
 
     // Wait for it...
     query.awaitTermination()
+
+    // Stop the session
+    spark.stop()
   }
 
   case class Incident(title: String, datetime: String, detail: String)
