@@ -33,20 +33,23 @@ object CleanIncoming {
       val dfJsonValue = batch
         .withColumn("i", from_json(col("value"), schema))
 
-      val titleExp = "“(.*) ”"
+      val titleExp = "[\"“][ ]*(.*)[\\s][\"”]"
       val dfTitle = dfJsonValue
-        .withColumn("title", regexp_extract(col("i.title"), titleExp, 1))
+        .withColumn("title", regexp_replace($"i.title", "[\\\"]", "\""))
+        .withColumn("title", regexp_extract(col("title"), titleExp, 1))
 
-      val districtExp = "ที่ อ.(.*) จ"
-      val provinceExp = "จ\\.(.*) \\(เหตุ"
+      val districtExp = "อ\\.(\\S+)"
+      val provinceExp = "จ\\.(\\S+)"
       val dfLocation = dfTitle
         .withColumn("district", regexp_extract(col("i.title"), districtExp, 1))
         .withColumn("province", regexp_extract(col("i.title"), provinceExp, 1))
-      
-      val dateExp = "\\(เหตุเกิดวันที่  (.*)น\\.\\)"
-      val customDateFormat = "dd/MM/yyyy  เวลาประมาณ HH.mm"
+
+      val dateExp = "วันที่[\\s]+(\\S*)[\\s]+\\S*[\\s]+(\\S*)น."
+      val customDateFormat = "dd/MM/yyyyHH.mm"
       val dfDate = dfLocation
-        .withColumn("dateTimeStamp", regexp_extract(col("i.title"), dateExp, 1))
+        .withColumn("date", regexp_extract(col("i.title"), dateExp, 1))
+        .withColumn("time", regexp_extract(col("i.title"), dateExp, 2))
+        .withColumn("dateTimeStamp", concat_ws("", col("date"), col("time")))
         .withColumn("dateTimeStamp", to_timestamp(col("dateTimeStamp"), customDateFormat))
         .withColumn("dateTimeEpoch", $"dateTimeStamp".cast("long"))
         .withColumn("dateTimeTruncated", unix_timestamp(col("dateTimeStamp").cast(DateType)))
@@ -54,6 +57,8 @@ object CleanIncoming {
         .withColumn("dateTimeStampAC", add_months(col("dateTimeStamp"), -6516))
         .withColumn("dateTimeEpochAC", unix_timestamp(col("dateTimeStampAC")) + col("dateTimeMillisDiff"))
         .withColumn("dateTimeStamp", to_timestamp(col("dateTimeEpochAC")))
+        .drop("date")
+        .drop("time")
         .drop("dateTimeEpoch")
         .drop("dateTimeTruncated")
         .drop("dateTimeMillisDiff")
@@ -61,11 +66,16 @@ object CleanIncoming {
         .drop("dateTimeEpochAC")
         .withColumnRenamed("dateTimeStamp", "timeOfOccurrence")
 
+      val fatalityExp = "เสียชีวิต[\\s]*(\\S*)[\\s]*ราย"
+      val casualtyExp = "บาดเจ็บ[\\s]*(\\S*)[\\s]*คน"
+      val dfFC = dfDate
+        .withColumn("fatality", regexp_extract(col("i.title"), fatalityExp, 1))
+        .withColumn("casualty", regexp_extract(col("i.title"), casualtyExp, 1))
 
       //      val dfDetail = dfDate
       //        .withColumn("detail", col("i.detail"))
 
-      val dfDropNonUseColumns = dfDate.drop("value").drop("i")
+      val dfDropNonUseColumns = dfFC.drop("value").drop("i")
       dfDropNonUseColumns.show(false)
     }
 
