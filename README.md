@@ -1,6 +1,6 @@
-# TRAVIST-Spark
+# ThaiRoad-Spark
 
-A big data service for TRAVIST made up of Apache Spark on bitnami Docker
+A big data service for ThaiRoad made up of Apache Spark on bitnami Docker
 
 ## Roadmap
 
@@ -33,9 +33,9 @@ Access Spark's shell with Spark installation
   ./spark-shell $spark_master_url
 ```
 
-| Parameter                                                                             | Type             | Description                                                                            |
-|:--------------------------------------------------------------------------------------|:-----------------|:---------------------------------------------------------------------------------------|
-| `spark_master_url`                                                                    | `string`         | **Required** Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
+| Parameter          | Type     | Description                                                                            |
+| :----------------- | :------- | :------------------------------------------------------------------------------------- |
+| `spark_master_url` | `string` | **Required** Your spark master url for spark admin. Example: spark://5bbbc7e372fa:7077 |
 
 Access Spark's shell from inside container
 
@@ -43,9 +43,9 @@ Access Spark's shell from inside container
   docker exec -it $spark_conatiner_id_or_name bash
 ```
 
-| Parameter                                                                                             | Type     | Description                                                                                                |
-|:------------------------------------------------------------------------------------------------------| :------- |:-----------------------------------------------------------------------------------------------------------|
-| `spark_conatiner_id_or_name`                                                                          | `string` |  **Required** Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master.     |
+| Parameter                    | Type     | Description                                                                                           |
+| :--------------------------- | :------- | :---------------------------------------------------------------------------------------------------- |
+| `spark_conatiner_id_or_name` | `string` | **Required** Your spark master container id or container name. Example: 5bbbc7e372fa or spark-master. |
 
 Submit an application to the cluster for processing (Need to perform inside spark master container)
 
