@@ -2,10 +2,6 @@
 
 A big data service for ThaiRoad made up of Apache Spark on bitnami Docker
 
-## Roadmap
-
-- Add Advanced Example of Spark Programs
-
 ## Run Locally
 
 Prefer Powershell for following command
